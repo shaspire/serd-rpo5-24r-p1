@@ -3,10 +3,41 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>FUBAR</title>
+	<title>Homepage</title>
 </head>
 <body>
-	<p>Hello World</p>
-		
+	<header>
+		<div class="container">
+			<p>Header Placeholder</p>
+		</div>
+	</header>
+
+	<main>
+		<div class="container">
+
+			<div class="categories">
+				{% for category in categories %}
+				<a href="#">{{ category.name }}</a>
+				{% endfor %}
+			</div>
+
+			<div>
+				<h2>Все новости</h2>
+				<div class="news">
+					{% for post in posts %}
+					<article>
+						<img src="{{ post.image_url }}" alt="{{ post.title }}">
+						<h3>{{ post.title }}</h3>
+						<p>{{ post.content }}</p>
+						<p>{{ post.category.name }}</p>
+						<a href="">Читать</a>
+					</article>
+					{% endfor %}
+				</div>
+			</div>
+
+		</div>
+	</main>
+
 </body>
 </html>
