@@ -1,13 +1,59 @@
-from django.db.models.signals import post_save
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
+from .models import Post, Category, Advertisement
+from django.db.models import Q
 
-from .models import Post, Category
-
-
-# Create your views here.
 
 def home_page(request):
-	categories = Category.objects.all()
-	posts = Post.objects.all()
-	context = {'categories':categories ,'posts':posts}
-	return render(request,'home.html',context)
+	hot_posts = Post.objects.all().order_by('-created_at')[:4]
+	posts = Post.objects.all().order_by('-created_at')
+	adverts = Advertisement.objects.all()[:4]
+	context = {
+		'hot_posts': hot_posts,
+		'posts': posts,
+		'adverts': adverts
+	}
+	return render(request, "index.html", context)
+
+
+def all_news_page(request):
+	posts = Post.objects.all().order_by('-created_at')
+	context = {
+		'posts': posts
+	}
+	return render(request, "all-news.html", context)
+
+
+def news_by_category(request, pk):
+	category = get_object_or_404(Category, pk=pk)
+	posts = Post.objects.filter(category=category).order_by('-created_at')
+	context = {
+		'category': category,
+		'posts': posts
+	}
+	return render(request, "news-by-category.html", context)
+
+
+def search_page(request):
+	return render(request, "search.html")
+
+
+def search_results(request):
+	query = request.GET.get('q')
+	results = []
+	if query:
+		results = Post.objects.filter(
+			Q(title__icontains=query) | Q(content__icontains=query)
+		)
+	context = {
+		'query': query,
+		'results': results
+	}
+	return render(request, "search-results.html", context)
+
+
+def read_news_page(request, pk):
+	post = get_object_or_404(Post, pk=pk)
+	context = {
+		'post': post
+	}
+	return render(request, "read-news.html", context)
