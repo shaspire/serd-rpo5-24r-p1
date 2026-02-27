@@ -14,7 +14,7 @@
         <div class="primary-header">
             <div class="container">
                 <nav>
-                    <a href="#">Home</a>
+                    <a href="{% url 'home_page' %}">Home</a>
                     <a href="#">About</a>
                     <a href="#">FAQ</a>
                     <a href="#">Contact us</a>
@@ -39,7 +39,7 @@
                         <img src="{% static './img/user.svg' %}" alt="">
                         <span>Login</span>
                     </a>
-                    <a href="#" class="logo">
+                    <a href="{% url 'home_page' %}" class="logo">
                         <img src="{% static './img/logo.svg' %}" alt="">
                     </a>
                     <a href="#">
@@ -74,7 +74,7 @@
 
     <footer class="footer">
         <div class="container">
-            <a href="#"><img src="{% static './img/logo-white.svg' %}" alt=""></a>
+            <a href="{% url 'home_page' %}"><img src="{% static './img/logo-white.svg' %}" alt=""></a>
             <p>&copy; TOO Qaznews 2026, All rights reserved.</p>
         </div>
     </footer>
