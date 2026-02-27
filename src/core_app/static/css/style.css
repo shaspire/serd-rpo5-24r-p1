@@ -83,6 +83,10 @@ a {
 /* header */
 
 /* main */
+main {
+	height: 100vh
+}
+
 .hot-news {
     background-color: var(--dark);
     padding: 26px 0;
