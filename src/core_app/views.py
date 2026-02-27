@@ -7,7 +7,7 @@ def home_page(request):
 	posts = Post.objects.all().order_by('-created_at')
 	ads = Advertisement.objects.all()[:4]
 	context = {
-		'posts': posts,
+		'posts': posts[4:][5:],
 		'hot_posts': posts[:4],
 		'ads': ads
 	}
