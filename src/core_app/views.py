@@ -4,13 +4,12 @@ from django.db.models import Q
 
 
 def home_page(request):
-	hot_posts = Post.objects.all().order_by('-created_at')[:4]
 	posts = Post.objects.all().order_by('-created_at')
-	adverts = Advertisement.objects.all()[:4]
+	ads = Advertisement.objects.all()[:4]
 	context = {
-		'hot_posts': hot_posts,
 		'posts': posts,
-		'adverts': adverts
+		'hot_posts': posts[:4],
+		'ads': ads
 	}
 	return render(request, "index.html", context)
 
