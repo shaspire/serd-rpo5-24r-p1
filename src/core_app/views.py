@@ -1,15 +1,13 @@
 from django.shortcuts import render, get_object_or_404
-from .models import Post, Category, Advertisement
+from .models import Post, Category
 from django.db.models import Q
 
 
 def home_page(request):
 	posts = Post.objects.all().order_by('-created_at')
-	ads = Advertisement.objects.all()[:4]
 	context = {
 		'posts': posts[4:][5:],
 		'hot_posts': posts[:4],
-		'ads': ads
 	}
 	return render(request, "index.html", context)
 
