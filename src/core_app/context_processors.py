@@ -6,4 +6,7 @@ def categories(request: WSGIRequest):
 	return {'categories': Category.objects.all()}
 
 def advertisements(request: WSGIRequest):
-	return {'ads': sample(list(Advertisement.objects.all()),2)}
+	ads = Advertisement.objects.all()
+	if len(ads) > 2:
+		ads = sample(list(ads),2)
+	return {'ads': ads}
