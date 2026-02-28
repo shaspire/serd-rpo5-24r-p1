@@ -10,7 +10,7 @@
             {% if results %}
             {% for post in results %}
             <div class="news-block__card">
-                <img src="{{ post.image_url }}" alt=""
+                <img src="{{ post.image.url }}" alt=""
                      class="news-block__img">
                 <div class="news-block__info">
                     <h4>{{ post.title|truncatewords:7 }}</h4>
@@ -32,7 +32,7 @@
             <h3>Advertising</h3>
             <div class="ad-block__info">
                 {% for ad in ads %}
-                <img src="{{ ad.image_url }}" alt="{{ ad.name }}">
+                <img src="{{ ad.image.url }}" alt="{{ ad.name }}">
                 {% endfor %}
             </div>
         </div>

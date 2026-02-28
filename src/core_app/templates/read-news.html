@@ -8,7 +8,7 @@
         <div class="news-block-content">
             <h3>{{ post.title }}</h3>
             <p class="mb-15">{{ post.created_at|date:"d.m.Y"}}</p>
-            <img src="{{ post.image_url }}" alt="" class="rounded-img">
+            <img src="{{ post.image.url }}" alt="" class="rounded-img">
             <p class="mb-15">{{ post.content }}</p>
             <a href="{% url 'news_by_category' pk=post.category.pk %}">#{{ post.category.name }}</a>
         </div>
@@ -16,7 +16,7 @@
             <h3>Advertising</h3>
             <div class="ad-block__info">
                 {% for ad in ads %}
-                <img src="{{ ad.image_url }}" alt="{{ ad.name }}">
+                <img src="{{ ad.image.url }}" alt="{{ ad.name }}">
                 {% endfor %}
             </div>
         </div>
