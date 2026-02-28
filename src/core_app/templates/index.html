@@ -8,7 +8,7 @@
         <h1>Hot news today</h1>
         <div class="hot-news-grid">
             {% for hot_post in hot_posts %}
-            <a href="#" class="hot-news__item"
+            <a href="{% url 'read_news_page' pk=hot_post.pk %}" class="hot-news__item"
                style="background: linear-gradient(rgba(0,0,0,0.33), rgba(0,0,0,0.33)), url({{ hot_post.image_url }}); background-size: cover; background-repeat: no-repeat;">
                 <h3>{{ hot_post.title|truncatewords:7 }}</h3>
                 <span>{{ hot_post.created_at|date:"d.m.Y" }}</span>
@@ -28,9 +28,9 @@
                 <div class="news-block__info">
                     <h4>{{ post.title|truncatewords:7 }}</h4>
                     <span>{{ post.created_at|date:"d.m.Y" }}</span>
-                    <a href="#">#{{ post.category.name }}</a>
+                    <a href="{% url 'news_by_category' pk=post.category.pk %}">#{{ post.category.name }}</a>
                     <p>{{ post.content|truncatewords:30 }}</p>
-                    <a href="#">READ</a>
+                    <a href="{% url 'read_news_page' pk=post.pk %}">READ</a>
                 </div>
             </div>
             {% endfor %}

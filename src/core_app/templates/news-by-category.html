@@ -14,9 +14,9 @@
                 <div class="news-block__info">
                     <h4>{{ post.title|truncatewords:7 }}</h4>
                     <span>{{ post.created_at|date:"d.m.Y" }}</span>
-                    <a href="#">#{{ post.category.name }}</a>
+                    <a href="{% url 'news_by_category' pk=post.category.pk %}">#{{ post.category.name }}</a>
                     <p>{{ post.content|truncatewords:30 }}</p>
-                    <a href="#">READ</a>
+                    <a href="{% url 'read_news_page' pk=post.pk %}">READ</a>
                 </div>
             </div>
             {% endfor %}
