@@ -6,7 +6,7 @@ from django.db.models import Q
 def home_page(request):
 	posts = Post.objects.all().order_by('-created_at')
 	context = {
-		'posts': posts[4:][5:],
+		'posts': posts[4:][:5],
 		'hot_posts': posts[:4],
 	}
 	return render(request, "index.html", context)
